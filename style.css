@@ -518,8 +518,13 @@ footer.site{ background: var(--black); color: rgba(244,239,228,.78); padding: 64
 
 .t-back{
   transform: rotateY(180deg);
-  padding: 20px; display:flex; flex-direction:column; justify-content:flex-end; color: var(--white);
+  padding: 20px; display:flex; flex-direction:column;
+  justify-content:center; /* centered vertically so nothing gets pushed off the top */
+  justify-content:safe center; /* if it ever overflows, keep the top visible */
+  color: var(--white);
 }
+.t-back .t-num{ display:block; }
+.t-back .t-label b, .t-front .t-front-label b{ overflow-wrap:break-word; hyphens:auto; -webkit-hyphens:auto; }
 .t-back .t-num{ font-family: var(--font-display); font-size:13px; opacity:.7; }
 .t-back .t-label b{ display:block; font-family: var(--font-display); font-size:16.5px; font-weight:600; margin-top:6px; line-height:1.2; }
 .t-back .t-label span{ font-size:12px; opacity:.85; display:block; margin-top:6px; line-height:1.4; }
@@ -542,7 +547,12 @@ footer.site{ background: var(--black); color: rgba(244,239,228,.78); padding: 64
   .cat-grid{ grid-template-columns: 1fr 1fr; gap:12px; }
   .cat-card{ padding: 18px 16px; }
   .tile-grid{ grid-template-columns: repeat(2, 1fr); }
-  .t-front .t-front-label b, .t-back .t-label b{ font-size:14.5px; }
+  .t-front .t-front-label b, .t-back .t-label b{ font-size:13.5px; line-height:1.2; }
+  .t-front .t-front-label{ padding:12px; }
+  .t-back{ padding:12px; }
+  .t-back .t-num{ font-size:11.5px; line-height:1; }
+  .t-back .t-label b{ margin-top:4px; }
+  .t-back .t-label span{ font-size:11px; line-height:1.3; margin-top:4px; }
 }
 @media (min-width: 641px) and (max-width: 980px){
   .mosaic{ display:grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 170px; }
