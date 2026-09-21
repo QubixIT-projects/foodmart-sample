@@ -293,7 +293,9 @@ section{ padding: clamp(52px, 9vw, 92px) 0; }
 .about-visual .brand-mark{ font-family: var(--font-display); font-size:30px; color:var(--gold-light); }
 .about-visual .brand-sub{ font-size:13px; opacity:.7; margin-top:6px; }
 .about-visual .divider{ height:1px; background: var(--line-light); margin:26px 0; }
-.about-visual .avline{ display:flex; justify-content:space-between; padding:10px 0; font-size:14px; border-top:1px solid var(--line-light); }
+.about-visual .avline{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:10px 0; font-size:14px; border-top:1px solid var(--line-light); }
+.about-visual .avline span{ flex-shrink:0; white-space:nowrap; }
+.about-visual .avline b{ text-align:right; min-width:0; overflow-wrap:break-word; }
 .about-visual .avline:first-of-type{ border-top:none; }
 .about-visual .avline b{ color: var(--gold-light); font-weight:600; }
 
