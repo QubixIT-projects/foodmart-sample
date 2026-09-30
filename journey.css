@@ -60,3 +60,43 @@
 }
 @media(prefers-reduced-motion:reduce){.arches .arch{animation:none}.jroute{height:auto}.jroute-in{position:relative}}
 .car{scale:1.5}
+
+/* ===== Photo backgrounds so the journey sections aren't empty voids ===== */
+.jintro{
+  background:
+    linear-gradient(180deg, rgba(23,19,15,.78) 0%, rgba(23,19,15,.9) 100%),
+    url(hero-poster.jpg) center/cover no-repeat;
+}
+.jstage, .jroute-in{ isolation:isolate; }
+.jstage::before, .jroute-in::before{
+  content:''; position:absolute; inset:0; z-index:-1;
+  background-size:cover; background-position:center; opacity:.34;
+  filter:saturate(.9);
+}
+.jstage::after, .jroute-in::after{           /* readability veil + fine gold dot texture */
+  content:''; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(circle at 1px 1px, rgba(199,154,61,.16) 1px, transparent 1.5px) 0 0/26px 26px,
+    linear-gradient(90deg, rgba(23,19,15,.92) 0%, rgba(23,19,15,.55) 55%, rgba(23,19,15,.8) 100%);
+}
+.jbg1::before{ background-image:url(5.jpg); }
+.jbg2::before{ background-image:url(hero-poster.jpg); opacity:.22; }
+.jbg3::before{ background-image:url(8.jpg); }
+.jbg4::before{ background-image:url(6.jpg); }
+
+/* Phones: stages are taller than the screen, so don't pin them (pinning clipped the content) */
+@media (max-width:900px){
+  .jstage{ position:relative; min-height:auto; padding:0; }
+  .jstage .jin{ padding:72px 0 64px; }
+  .jroute-in .jin{ padding-top:84px; }
+  .jstage::after, .jroute-in::after{
+    background:
+      radial-gradient(circle at 1px 1px, rgba(199,154,61,.16) 1px, transparent 1.5px) 0 0/26px 26px,
+      linear-gradient(180deg, rgba(23,19,15,.75), rgba(23,19,15,.92));
+  }
+  .arches .arch{ max-width:32%; }
+}
+
+/* keep the container's side padding (the .jin shorthand was zeroing it) */
+.jin{ padding-left:clamp(20px,5vw,32px); padding-right:clamp(20px,5vw,32px); box-sizing:border-box; }
+.jstage .jin, .jroute-in .jin, .journey .jin{ padding-left:clamp(20px,5vw,32px); padding-right:clamp(20px,5vw,32px); }
