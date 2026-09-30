@@ -124,3 +124,40 @@ if(header){
   window.addEventListener('resize', update);
   update();
 })();
+
+
+// ---- Phase 1: smooth scroll + masked headlines ----
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Split section headings into masked words (text nodes only, keeps <em> etc.)
+  let n = 0;
+  document.querySelectorAll('.section-head h2, .page-hero h1').forEach(h=>{
+    if(reduce) return;
+    n = 0;
+    (function walk(node){
+      [...node.childNodes].forEach(c=>{
+        if(c.nodeType === 3){
+          const frag = document.createDocumentFragment();
+          c.textContent.split(/(\s+)/).forEach(t=>{
+            if(!t) return;
+            if(/^\s+$/.test(t)){ frag.appendChild(document.createTextNode(' ')); return; }
+            const w = document.createElement('span'); w.className = 'mw';
+            const i = document.createElement('span'); i.textContent = t; i.style.setProperty('--i', n++);
+            w.appendChild(i); frag.appendChild(w);
+          });
+          c.replaceWith(frag);
+        } else if(c.nodeType === 1){ walk(c); }
+      });
+    })(h);
+    // page-hero h1 is not inside .reveal: trigger it on load
+    if(!h.closest('.reveal')) requestAnimationFrame(()=> requestAnimationFrame(()=> h.classList.add('mw-in')));
+  });
+
+  // Lenis smooth scroll (desktop wheel; touch stays native for best mobile feel)
+  if(!reduce && window.Lenis){
+    const lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 1, anchors: true });
+    function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  }
+})();
