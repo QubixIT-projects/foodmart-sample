@@ -23,7 +23,7 @@ const io = new IntersectionObserver((entries)=>{
       io.unobserve(e.target);
     }
   });
-},{ threshold: 0.15 });
+},{ threshold: 0.05, rootMargin: "0px 0px -6% 0px" });
 revealEls.forEach(el=> io.observe(el));
 
 // ---- WhatsApp quote helper ----

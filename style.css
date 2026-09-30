@@ -848,3 +848,14 @@ html, body{ max-width:100%; overflow-x:clip; }
   .burger{ margin-left:auto; }
   .logo .name{ font-size:19px; }
 }
+
+/* ---------- About card: clean, consistent rows on all screens ---------- */
+.about-visual .divider + .avline{ border-top:none; }   /* no doubled line under the divider */
+@media (max-width:720px){
+  .about-visual{ padding:26px 22px; }
+  .about-visual .divider{ margin:18px 0; }
+  .about-visual .avline{ display:block; padding:12px 0; }
+  .about-visual .avline span{ display:block; white-space:normal; margin-bottom:5px; font-size:11.5px; }
+  .about-visual .avline b{ display:block; text-align:left; font-size:15px; line-height:1.35; }
+  .about-visual .btn{ margin-top:4px; }
+}
