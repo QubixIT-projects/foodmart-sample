@@ -859,3 +859,24 @@ html, body{ max-width:100%; overflow-x:clip; }
   .about-visual .avline b{ display:block; text-align:left; font-size:15px; line-height:1.35; }
   .about-visual .btn{ margin-top:4px; }
 }
+
+/* =====================================================================
+   PATCH — (1) desktop nav spacing  (2) lighter hero overlay on mobile
+   Desktop rules apply ONLY above 1100px, so the hamburger/mobile header is untouched.
+   ===================================================================== */
+@media (min-width:1101px){
+  .nav{ gap:24px; }
+  .navlinks{ gap:clamp(12px,1.35vw,22px); }
+  .navlinks a{ font-size:14px; }
+  .nav-cta{ gap:10px; margin-left:8px; flex-shrink:0; }
+  .nav-cta .btn{ padding:12px 22px; }
+}
+@media (min-width:1101px) and (max-width:1440px){ .nav-cta .btn-outline{ display:none; } }
+
+/* Mobile image brightness — only the overlay darkness changes */
+@media (max-width:980px){
+  .hero-video-overlay{ background:linear-gradient(180deg, rgba(23,19,15,.40) 0%, rgba(23,19,15,.52) 55%, rgba(23,19,15,.75) 100%); }
+}
+@media (max-width:720px){
+  .page-hero-overlay{ background:linear-gradient(180deg, rgba(23,19,15,.50) 0%, rgba(23,19,15,.60) 60%, rgba(23,19,15,.80) 100%); }
+}
