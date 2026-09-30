@@ -101,3 +101,26 @@ if(header){
     header.style.boxShadow = window.scrollY > 8 ? '0 6px 18px rgba(23,19,15,.08)' : 'none';
   });
 }
+
+
+// ---- Parallax: background drifts slower than content ----
+(function(){
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const layers = [...document.querySelectorAll('.hero-video, .page-hero-img')]
+    .map(el=>({el, box: el.parentElement, speed: 0.25}));
+  const panel = document.querySelector('.hero-panel');
+  if(!layers.length) return;
+  let ticking = false;
+  function update(){
+    const vh = window.innerHeight;
+    layers.forEach(l=>{
+      const r = l.box.getBoundingClientRect();
+      if(r.bottom < 0 || r.top > vh) return;
+      l.el.style.transform = 'translate3d(0,' + (-r.top * l.speed).toFixed(1) + 'px,0)';
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', ()=>{ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive:true});
+  window.addEventListener('resize', update);
+  update();
+})();

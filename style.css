@@ -666,3 +666,19 @@ footer.site{ background: var(--black); color: rgba(244,239,228,.78); padding: 64
   .form-grid{ grid-template-columns: 1fr; }
   .cta-banner .wrap{ flex-direction:column; align-items:flex-start; }
 }
+
+
+/* ---------- Marquee ticker ---------- */
+.marquee{ background: var(--gold); color: var(--black); overflow:hidden; white-space:nowrap; font-family: var(--font-mono); font-size:12px; letter-spacing:.04em; padding:9px 0; }
+.marquee-track{ display:inline-flex; width:max-content; animation: marquee 32s linear infinite; }
+.marquee-track span{ padding:0 28px; position:relative; }
+.marquee-track span::after{ content:'\25C6'; position:absolute; right:-5px; font-size:8px; top:50%; transform:translateY(-50%); }
+.marquee:hover .marquee-track{ animation-play-state: paused; }
+@keyframes marquee{ to{ transform: translateX(-50%); } }
+
+/* ---------- Parallax (driven by script.js) ---------- */
+.hero-video, .page-hero-img{ height:130%; top:-15%; will-change: transform; }
+@media (prefers-reduced-motion: reduce){
+  .marquee-track{ animation:none; }
+  .hero-video, .page-hero-img{ height:100%; top:0; transform:none !important; }
+}
