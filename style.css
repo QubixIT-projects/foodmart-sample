@@ -880,3 +880,9 @@ html, body{ max-width:100%; overflow-x:clip; }
 @media (max-width:720px){
   .page-hero-overlay{ background:linear-gradient(180deg, rgba(23,19,15,.50) 0%, rgba(23,19,15,.60) 60%, rgba(23,19,15,.80) 100%); }
 }
+
+/* PATCH — mobile: category filters wrap onto several lines instead of one long scrolling row */
+@media (max-width:720px){
+  .filter-row{ flex-wrap:wrap; overflow-x:visible; margin-inline:0; padding-inline:0; gap:8px; margin-bottom:32px; }
+  .filter-pill{ flex:0 0 auto; padding:8px 14px; font-size:12px; }
+}
