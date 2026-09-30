@@ -161,3 +161,6 @@ if(header){
     requestAnimationFrame(raf);
   }
 })();
+
+// ---- Clickable HORECA / Food Mart cards ----
+document.querySelectorAll('.segment-card').forEach(c=>{const a=c.querySelector('h3 a');if(!a)return;c.style.cursor='pointer';c.addEventListener('click',e=>{if(!e.target.closest('a'))location.href=a.href})});

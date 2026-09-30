@@ -730,3 +730,14 @@ html.lenis, html.lenis body{ height:auto; }
   .reveal, .tile-grid .t-tile.reveal, .product-card.reveal{ opacity:1 !important; transform:none !important; }
   .mw > span{ transform:none !important; }
 }
+
+.segment-card h3 a{color:inherit}.segment-card h3 a:hover{text-decoration:underline}
+.avline a,.about-card h4 a{color:inherit;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
+
+/* Nav: keep 6 links on one line */
+.navlinks{ gap: clamp(14px, 1.8vw, 28px); }
+.navlinks a{ white-space:nowrap; font-size:14.5px; }
+.logo .tag{ white-space:nowrap; }
+@media (max-width:1240px){ .nav-cta .btn-outline{ display:none; } }
+.jintro::before{ display:none; }
+@media (max-width:1340px){ .nav-cta .btn-outline{ display:none; } }
